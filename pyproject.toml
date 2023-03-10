@@ -12,6 +12,7 @@ classifiers = [
 ]
 description = "Fast key search in python"
 readme = "readme.md"
+dependencies = ["cffi"]
 
 [project.urls]
 "Homepage" = "https://github.com/sarvensis/dict-picker"
