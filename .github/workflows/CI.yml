@@ -23,7 +23,8 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          args: --release --out dist -m Cargo.toml -i 3.10
+          args: --release --out dist -m Cargo.toml --find-interpreter
+          maturin-version: v0.14.0
           manylinux: auto
       - name: Upload wheels
         uses: actions/upload-artifact@v3
