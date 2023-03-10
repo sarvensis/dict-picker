@@ -11,11 +11,10 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 description = "Fast key search in python"
-readme = "README.md"
+readme = "readme.md"
 
 [project.urls]
 "Homepage" = "https://github.com/sarvensis/dict-picker"
 
 [tool.maturin]
 sdist-include = ["LICENSE", "Readme.md"]
-bindings = "cffi"
