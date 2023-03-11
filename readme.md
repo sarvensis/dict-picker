@@ -54,6 +54,13 @@ assert pick_by_path(example_dict, "*/qux") == "quux"
 assert pick_by_path(example_dict, "fred/*") == {"wilma": "betty", "barney": "pebbles"}
 assert pick_by_path(example_dict, "*/quux") is None
 assert pick_by_path(example_dict, "arr/*/id") == [123, 456, 789]
+
+# slice syntax
+assert pick_by_path(example_dict, "arr/0") == {'id': 123}
+assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
+assert pick_by_path(example_dict, "arr/-1") == {'name': 'bubbles'}
+assert pick_by_path(example_dict, "arr/1:.id") == {'id': 456}
+assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
 ```
 
 Parameters:
@@ -148,3 +155,20 @@ On macOS, it is better to use docker instead of podman.
     ```
 
 - [X] Search by tuple of patterns. Returns the result as a list of found values.
+
+- [X] add option to access lists via python slice syntax ([issue #2](https://github.com/sarvensis/dict-picker/issues/2)):
+
+    ```python
+    {
+        arr:  [
+            { id: 123 },
+            { id: 456 },
+            { id: 789 },
+        ]
+    }
+    'arr/1/id' -> 456
+    'arr/1' -> { id: 123 }
+    'arr/:2/id' -> [123, 456]
+    'arr/1:' -> [{ id: 456 },{ id: 789 }]
+    'arr/::2/id' -> [123, 789]
+    ```
