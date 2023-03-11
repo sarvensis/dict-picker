@@ -77,19 +77,16 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    # if: "startsWith(github.ref, 'refs/tags/')"
-    needs: [macos]
+    if: "startsWith(github.ref, 'refs/tags/')"
+    needs: [linux, windows, macos]
     steps:
       - uses: actions/download-artifact@v3
         with:
           name: wheels
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
       - name: Publish to PyPI
+        uses: PyO3/maturin-action@v1
         env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          pip install --upgrade twine
-          twine upload --skip-existing *
+          MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        with:
+          command: upload
+          args: --skip-existing *
