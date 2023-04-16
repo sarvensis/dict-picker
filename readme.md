@@ -55,20 +55,12 @@ assert pick_by_path(example_dict, "fred/*") == {"wilma": "betty", "barney": "peb
 assert pick_by_path(example_dict, "*/quux") is None
 assert pick_by_path(example_dict, "arr/*/id") == [123, 456, 789]
 
-<<<<<<< HEAD
 # slice syntax
 assert pick_by_path(example_dict, "arr/0") == {'id': 123}
-assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
+assert pick_by_path(example_dict, "arr/1/id") == 456
 assert pick_by_path(example_dict, "arr/-1") == {'name': 'bubbles'}
-assert pick_by_path(example_dict, "arr/1:.id") == {'id': 456}
-=======
-# slice syntax (>v0.1.4)
-assert pick_by_path(example_dict, "arr/0") == {'id': 123}
-assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
-assert pick_by_path(example_dict, "arr/-1") == {'name': 'bubbles'}
-assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
->>>>>>> b9d8e5a (change version for pypi)
-assert pick_by_path(example_dict, "arr/1.id") == {'id': 456}
+assert pick_by_path(example_dict, "arr/1:/id") == [456, 789, None]
+assert pick_by_path(example_dict, "arr/::-2/id") == [789, 123]
 ```
 
 Parameters:

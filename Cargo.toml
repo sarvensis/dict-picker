@@ -1,10 +1,6 @@
 [package]
 name = "dict-picker"
-<<<<<<< HEAD
 version = "0.1.4"
-=======
-version = "0.1.3"
->>>>>>> b9d8e5a (change version for pypi)
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
